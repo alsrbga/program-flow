@@ -21,7 +21,7 @@ public class User {
     private String userId;
 
     @OneToOne(mappedBy = "managerUser")
-    private Event meeting;
+    private Assembly assembly;
 
     private String fullName;
 
