@@ -32,10 +32,10 @@ public class UserRequestDto {
     @ApiModelProperty(required = true)
     private String password;
 
-    @NotBlank(message = "Event Name is mandatory.")
+    @NotBlank(message = "Assembly Name is mandatory.")
     @Size(max = 50, message = "Event Name can not be more then 50 characters.")
     @ApiModelProperty(required = true)
-    private String eventName;
+    private String assemblyName;
 
 }
 

@@ -1,29 +1,32 @@
 package com.programflow.programflow.constants;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RestApiUrls {
 
 
-    public static final String USER = "/v1/user";
-    public static final String SIGNUP = "/signup";
-    public static final String VERIFY = "/verify";
-    public static final String RESEND_VERIFICATION = "/resendverification";
-    public static final String GET_USER = "{userId}";
-    public static final String GET_USERS_BY_COMPANY_ID = "companyid/{companyId}";
-    public static final String ADD_NEW_USER = "/addnewuser";
-    public static final String SET_USER_NEW_PASSWORD = "/setpassword/{userId}";
+    public static final String ASSEMBLY = "/v1/assembly";
+    public static final String ASSEMBLY_ID = "/{assemblyId}";
 
-    public static final String LOGIN = "/v1/login";
-    public static String USER_MANAGER;
 
-    public static String NOTIFICATION_MANAGER;
+    public static final String AFFILIATE_MILL = "/affiliate/mill";
+    public static final String DELETE_AFFILIATE_MILL = "/affiliate/mill/delete/{affiliateRelationId}";
+    public static final String UPDATE_AFFILIATE_MILL = "/affiliate/mill/update/{affiliateRelationId}";
+    public static final String AFFILIATE_MILL_APPLICATIONS = "/affiliate/mill/application";
 
-    public RestApiUrls(@Value("${usermanager.url}") String USER_MANAGER,
-                       @Value("${notificationmanager.url}") String NOTIFICATION_MANAGER) {
-        this.USER_MANAGER = USER_MANAGER;
-        this.NOTIFICATION_MANAGER = NOTIFICATION_MANAGER;
-    }
+    public static final String AFFILIATE_MILL_APPLICATION_DETAIL = "/affiliate/application/{affiliateRelationId}";
+    public static final String AFFILIATE_RELATIONS = "/affiliate/relations";
+    public static final String AFFILIATE_RELATIONS_DETAIL = "/affiliate/relations/{affiliateRelationId}";
+
+    public static final String AFFILIATED_TRADERS = "/affiliate/traders";
+
+
+    public static final String APPLICATION = "/v1/application";
+    public static final String GET_ALL_APPLICATIONS = "getAllApplications";
+    public static final String APPLICATION_ID = "{applicationId}";
+    public static final String UPDATE_APPLICATION_STATUS = "updateApplicationStatus";
+    public static final String GET_USER_TYPE_STATUS = "getUserType/status";
+
+    public static final String USER_ID = "/{userId}";
 }
