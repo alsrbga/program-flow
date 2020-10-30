@@ -12,7 +12,6 @@ import com.programflow.programflow.repository.entity.User;
 import com.programflow.programflow.service.AssemblyService;
 import com.programflow.programflow.service.WebClientUserService;
 import com.programflow.programflow.util.MapperUtils;
-import jdk.internal.event.Event;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -64,7 +63,7 @@ public class AssemblyServiceImpl implements AssemblyService {
         userDto.setAssemblyId(assembly.getAssemblyId());
         webClientUserService.updateUser(userDto, user.getUserId());
 
-        return assemblyRepository.save().getAssemblyId();
+        return userRepository.save().getAssemblyId();
     }
 
     @Override
@@ -72,7 +71,8 @@ public class AssemblyServiceImpl implements AssemblyService {
 
         Assembly assembly =
                 assemblyRepository.getAssemblyByAssemblyId(assemblyId).orElseThrow(() -> new ProgramFlowException(ASSEMBLY_NOT_FOUND));
-                return MapperUtils.mapToAssemblyDto(assembly);
+
+        return MapperUtils.mapToAssemblyDto(assembly);
 
     }
 
