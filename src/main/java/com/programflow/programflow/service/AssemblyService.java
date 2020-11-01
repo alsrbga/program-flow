@@ -9,5 +9,5 @@ public interface AssemblyService {
 
     String addAssembly(AssemblyRequestDto assemblyRequestDto, String userId);
 
-    AssemblyDto getAssemblyByAssemblyId(String eventId);
+    AssemblyDto getAssemblyByAssemblyId(String assemblyId);
 }

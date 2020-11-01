@@ -9,7 +9,7 @@ import jdk.internal.event.Event;
 public class MapperUtils {
 
 
-    public static AssemblyDto mapToAssemblyDto(Event assembly) {
+    public static AssemblyDto mapToAssemblyDto(Assembly assembly) {
         AssemblyDto assemblyDto = new AssemblyDto();
         assemblyDto.setAssemblyDescription("Address Line :" + assembly.getAssemblyDescription() + ", " + assembly.getCity() + ", " + assembly.getCountry().toString() + ", " + assembly.getPostalCode());
         assemblyDto.setAssemblyStartDate(assembly.getAssemblyStartDate());
@@ -19,7 +19,7 @@ public class MapperUtils {
         return assemblyDto;
     }
 
-    public static AssemblyRequestDto mapToEventRequestDto(Assembly assembly) {
+    public static AssemblyRequestDto mapToAssemblyRequestDto(Assembly assembly) {
         AssemblyRequestDto assemblyRequestDto = new AssemblyRequestDto();
         assemblyRequestDto.setAssemblyName(assembly.getAssemblyName());
         assemblyRequestDto.setPhoneNumber(assembly.getPhoneNumber());

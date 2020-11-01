@@ -47,6 +47,6 @@ public class Assembly {
 
     private String postalCode;
 
-    @OneToOne(cascade = CascadeType.ALL) // necati abiye sor!
+    @OneToOne(cascade = CascadeType.ALL) // necati abi sor!
     private User managerUser;
 }
