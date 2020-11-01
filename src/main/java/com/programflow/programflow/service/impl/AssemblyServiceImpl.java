@@ -4,6 +4,7 @@ package com.programflow.programflow.service.impl;
 import com.programflow.programflow.dto.AssemblyDto;
 import com.programflow.programflow.dto.UserDto;
 import com.programflow.programflow.dto.request.AssemblyRequestDto;
+import com.programflow.programflow.exception.ErrorType;
 import com.programflow.programflow.exception.ProgramFlowException;
 import com.programflow.programflow.repository.AssemblyRepository;
 import com.programflow.programflow.repository.UserRepository;
@@ -12,6 +13,7 @@ import com.programflow.programflow.repository.entity.User;
 import com.programflow.programflow.service.AssemblyService;
 import com.programflow.programflow.service.WebClientUserService;
 import com.programflow.programflow.util.MapperUtils;
+import jdk.internal.event.Event;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -31,12 +33,17 @@ public class AssemblyServiceImpl implements AssemblyService {
     private AssemblyRequestDto assemblyRequestDto;
 
 
+    @Override
     public String addAssembly(AssemblyRequestDto assemblyRequestDto, String assemblyId) {
         UserDto userDto =
                 webClientUserService.findByUserId(assemblyId).orElseThrow(() -> new ProgramFlowException(USER_NOT_FOUND));
 
         if (!(userDto.getAssemblyId() == null)) {
             throw new ProgramFlowException(USER_HAS_ALREADY_ASSEMBLY);
+        }
+
+        if (assemblyRepository.findByAssemblyLink(assemblyRequestDto.getAssemblyLink()).isPresent()) {
+            throw new ProgramFlowException(ASSEMBLY_LINK_ALREADY_EXISTS);
         }
 
         Assembly assembly = new Assembly();
@@ -63,14 +70,14 @@ public class AssemblyServiceImpl implements AssemblyService {
         userDto.setAssemblyId(assembly.getAssemblyId());
         webClientUserService.updateUser(userDto, user.getUserId());
 
-        return userRepository.save().getAssemblyId();
+        return assemblyRepository.save(assembly).getAssemblyId;
     }
 
     @Override
     public AssemblyDto getAssemblyByAssemblyId(String assemblyId) {
 
         Assembly assembly =
-                assemblyRepository.getAssemblyByAssemblyId(assemblyId).orElseThrow(() -> new ProgramFlowException(ASSEMBLY_NOT_FOUND));
+                assemblyRepository.findAssemblyByAssemblyId(assemblyId).orElseThrow(() -> new ProgramFlowException(ASSEMBLY_NOT_FOUND));
 
         return MapperUtils.mapToAssemblyDto(assembly);
 
