@@ -70,7 +70,7 @@ public class AssemblyServiceImpl implements AssemblyService {
         userDto.setAssemblyId(assembly.getAssemblyId());
         webClientUserService.updateUser(userDto, user.getUserId());
 
-        return assemblyRepository.save(assembly).getAssemblyId;
+        return assemblyRepository.save(assembly).getAssemblyId();
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AssemblyRepository extends JpaRepository<String, Integer> {
+public interface AssemblyRepository extends JpaRepository<Assembly, Integer > {
 
     Optional<Assembly> findAssemblyByAssemblyId(String assemblyId);
 
