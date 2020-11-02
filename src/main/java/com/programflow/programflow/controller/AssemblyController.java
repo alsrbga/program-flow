@@ -29,6 +29,8 @@ public class AssemblyController {
 
     @GetMapping(ASSEMBLY_ID)
     public ResponseEntity<AssemblyDto> getAssembly(@PathVariable String assemblyId) {
-        return ResponseEntity.ok(assemblyService.getAssemblyByAssemblyId(assemblyId));
+        return ResponseEntity.ok(assemblyService.getAssemblyByAssemblyId(ASSEMBLY_ID));
     }
+
+
 }
